@@ -1,11 +1,16 @@
 {
   "telegram_chat_id": "8582302114",
   "assets": {
-    "portfolio": ["bitcoin", "ethereum", "solana"],
-    "watchlist": ["fetch-ai", "pepe"]
+    "portfolio_demo": {
+      "bitcoin": 0.5,
+      "ethereum": 2.0,
+      "solana": 15.0
+    }
   },
-  "macro_indicators": {
-    "sp500": "^GSPC",
-    "dxy": "DX-Y.NYB"
+  "news": {
+    "query": "cryptocurrency",
+    "lang": "en",
+    "country": "us",
+    "max_articles": 3
   }
 }
