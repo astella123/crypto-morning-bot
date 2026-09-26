@@ -1,7 +1,9 @@
 name: Crypto Morning Bot
 
 on:
-  workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * *'  # Esegue ogni giorno alle 5:30 UTC (7:30 Italia)
+  workflow_dispatch:      # Permette di lanciarlo manualmente dalla dashboard
 
 jobs:
   run-bot:
