@@ -5,9 +5,8 @@ Ottieni un report professionale, sintetico e azionabile direttamente su Telegram
 
 ### 📱 Il tuo briefing mattutino
 
-![Anteprima Report 1](screenshot.png1)
-![Anteprima Report 2](screenshot.png2)
-
+![Anteprima Report 1](screenshot.png1.jpg)
+![Anteprima Report 2](screenshot.png2.jpg)
 ---
 
 ##  Perché questo Bot?
