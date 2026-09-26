@@ -1,45 +1,46 @@
-#  Crypto Morning Bot
+# 🤖 Crypto Morning Bot
 
-Un bot automatizzato che invia ogni mattina un **Crypto Morning Briefing** professionale direttamente su Telegram. 
+**Smetti di aprire 10 app per controllare i mercati.**
+Ottieni un report professionale, sintetico e azionabile direttamente su Telegram ogni mattina alle 07:30.
 
-Progettato per fornire un quadro completo e immediato del mercato crypto e macroeconomico prima dell'apertura delle borse, trasformando dati grezzi in insight azionabili.
+### 📱 Il tuo briefing mattutino
 
-![Crypto Morning Briefing)
-
-## ✨ Funzionalità Principali
-
-Il bot genera un report giornaliero strutturato in 5 sezioni chiave:
-
-- 💼 **Portfolio Demo**: Calcolo del valore attuale e delle variazioni (24h e 7d) di un portafoglio fittizio.
-- 🔥 **Trending & Top Gainers**: Analisi dell'hype di mercato (ricerche CoinGecko) e delle crypto con le migliori performance settimanali.
-- 🌍 **Macro & Contesto**: Monitoraggio di S&P 500 e DXY (Indice del Dollaro) con interpretazione automatica dell'impatto sulle crypto.
-- 🧠 **Market Sentiment**: Indice Fear & Greed con logica Trend Follower.
-- 📰 **Ultime Notizie**: Aggregazione in tempo reale delle top 3 notizie crypto tramite GNews.
-
-## 🛠️ Tech Stack & Architettura
-
-Il progetto è costruito per essere **serverless, gratuito e completamente automatizzato**:
-
-- **Linguaggio**: Python 3.10
-- **Automazione**: GitHub Actions (Cron Job giornaliero)
-- **Data Fetching**: `requests` (REST API), `yfinance` (Dati macro)
-- **API Integrate**: CoinGecko (Crypto), Alternative.me (Sentiment), GNews (News), Yahoo Finance (Macro)
-- **Sicurezza**: Gestione delle chiavi API tramite GitHub Secrets (Nessuna credenziale hardcoded)
-
-##  Come Funziona
-
-1. **Trigger**: GitHub Actions attiva lo script Python ogni giorno alle 07:30 (CET).
-2. **Raccolta Dati**: Il bot interroga le API esterne in sequenza, gestendo i rate-limit e utilizzando eccezioni (`try-except`) per garantire l'invio del messaggio anche in caso di fallback di un singolo servizio.
-3. **Formattazione**: I dati grezzi vengono elaborati, convertiti in Euro e formattati in Markdown.
-4. **Consegna**: Il report finale viene inviato tramite Telegram Bot API.
-
-## 🔧 Setup per Sviluppatori
-
-1. Clona il repository.
-2. Crea un bot su Telegram tramite `@BotFather` e ottieni il `TELEGRAM_TOKEN`.
-3. Ottieni una API Key gratuita da [GNews.io](https://gnews.io/).
-4. Aggiungi le chiavi ai **GitHub Secrets** (`TELEGRAM_TOKEN` e `GNEWS_API_KEY`).
-5. Esegui il workflow manualmente o attendi il trigger schedulato.
+![Anteprima Report 1](screenshot.png1)
+![Anteprima Report 2](screenshot.png2)
 
 ---
-*Progettato e sviluppato da [Il Tuo Nome] - [Link al tuo profilo LinkedIn]*
+
+##  Perché questo Bot?
+
+Il mercato crypto e macroeconomico è rumoroso. Questo strumento elimina la dispersione e ti fornisce un quadro chiaro prima dell'apertura delle borse.
+
+- 💼 **Il Tuo Portafoglio sotto controllo:** Monitora il valore reale e le variazioni (24h e 7d) delle tue asset.
+- 🔥 **Anticipa i Trend:** Scopri quali crypto stanno generando hype e quali hanno le migliori performance settimanali.
+- 🌍 **Contesto Macro Intelligente:** Non solo numeri. Il bot interpreta S&P 500 e DXY (Dollaro) per dirti se il clima è favorevole o rischioso per le crypto.
+- 📰 **Notizie Mirate:** Le 3 notizie più rilevanti del giorno, senza clickbait.
+
+## 🚀 Come ottenerlo
+
+Il bot è completamente personalizzabile. Puoi scegliere quali crypto monitorare, impostare il tuo portafoglio reale e decidere l'orario di consegna.
+
+**Interessato a una demo o all'installazione?**
+Contattami su [LinkedIn](www.linkedin.com/in/andrea-stella-211479413) o via Telegram per parlarne.
+
+---
+
+<details>
+<summary>🛠️ <b>Dettagli Tecnici (Per Sviluppatori e Recruiter)</b></summary>
+
+Il progetto è costruito per essere serverless, gratuito e robusto.
+
+- **Stack:** Python 3.10, GitHub Actions (Cron Job).
+- **API:** CoinGecko, Alternative.me, GNews, Yahoo Finance.
+- **Sicurezza:** Zero credenziali hardcoded (uso di GitHub Secrets).
+- **Robustezza:** Architettura con `try-except` per garantire l'invio del report anche in caso di down di una singola API.
+
+**Setup Rapido:**
+1. Clona il repository.
+2. Ottieni i token da Telegram (`@BotFather`) e GNews.
+3. Inseriscili nei GitHub Secrets.
+4. Personalizza il `config.json`.
+</details>
