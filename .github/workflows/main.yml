@@ -1,20 +1,25 @@
-name: Crypto Bot
+name: Crypto Morning Bot
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  run-bot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-python@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
           
-      - name: Installa le librerie
+      - name: Install dependencies
         run: pip install requests yfinance
         
-      - name: Esegui il bot
+      - name: Run bot
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          GNEWS_API_KEY: ${{ secrets.GNEWS_API_KEY }}
         run: python bot.py
