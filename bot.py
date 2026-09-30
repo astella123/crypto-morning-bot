@@ -104,7 +104,6 @@ try:
 except:
     messaggio += "• Fear & Greed: N/D\n"
 
-# E. Notizie GNews
 messaggio += "\n📰 *ULTIME NOTIZIE*\n"
 if gnews_key:
     try:
@@ -118,7 +117,6 @@ if gnews_key:
 else:
     messaggio += "⚠️ Chiave GNews mancante nei Secrets\n"
 
-# F. Legenda
 messaggio += "\n━━━━━━━━━━━━━━━━━━━━\n"
 messaggio += "📖 *GUIDA RAPIDA*\n"
 messaggio += "🟢 = *Conviene* (Segnale positivo)\n"
