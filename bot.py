@@ -4,7 +4,6 @@ import requests
 import yfinance as yf
 import time
 
-# --- 1. CONFIGURAZIONE E SECRETS ---
 with open('config.json') as f:
     config = json.load(f)
 
@@ -12,7 +11,6 @@ token = os.environ.get('TELEGRAM_TOKEN')
 gnews_key = os.environ.get('GNEWS_API_KEY')
 chat_id = config['telegram_chat_id']
 
-# Funzione per formattare i numeri in stile Europeo (€1.234,56)
 def fmt_eur(val):
     if val is None: return "N/D"
     return f"€{val:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
@@ -22,15 +20,13 @@ def fmt_pct(val):
     segno = "+" if val >= 0 else ""
     return f"{segno}{val:.2f}%"
 
-# --- 2. RACCOLTA DATI (Con paraurti try-except e TIMEOUT) ---
 messaggio = " *CRYPTO MORNING BRIEFING*\n\n"
 
-# A. Portfolio Demo
 messaggio += "💼 *PORTFOLIO DEMO*\n"
 try:
     portfolio = config['assets']['portfolio_demo']
     ids = ",".join(portfolio.keys())
-    # Per avere 24h e 7d insieme usiamo /coins/markets
+
     url_markets = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&ids={ids}&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h,7d"
     dati_port = requests.get(url_markets, timeout=10).json()
     
@@ -50,9 +46,9 @@ try:
 except Exception as e:
     messaggio += "⚠️ Errore caricamento Portfolio\n\n"
 
-time.sleep(1.5) # Pausa per non superare i limiti API gratuiti
+time.sleep(1.5)
 
-# B. Trending
+
 messaggio += "🔥 *TRENDING (Hype)*\n"
 try:
     url_trend = "https://api.coingecko.com/api/v3/search/trending"
@@ -66,7 +62,6 @@ except:
 
 time.sleep(1.5)
 
-# C. Top Gainers (7 giorni)
 messaggio += "\n📈 *TOP GAINERS (7d)*\n"
 try:
     url_gainers = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=percent_change_7d_desc&per_page=3&page=1&sparkline=false&price_change_percentage=7d"
@@ -77,7 +72,6 @@ try:
 except:
     messaggio += "N/D\n"
 
-# D. Macro & Sentiment (Logica Trend Follower)
 messaggio += "\n🌍 *MACRO & CONTESTO*\n"
 try:
     sp = yf.Ticker("^GSPC").info
@@ -133,7 +127,6 @@ messaggio += "• *24h/7d*: Variazione ultime 24 ore / 7 giorni\n"
 messaggio += "• *DXY*: Forza dollaro (se scende, crypto salgono)\n"
 messaggio += "• *Fonti*: CoinGecko, Yahoo Finance, GNews"
 
-# --- 3. INVIO (Con timeout di sicurezza) ---
 payload = {"chat_id": chat_id, "text": messaggio, "parse_mode": "Markdown"}
 url_telegram = f"https://api.telegram.org/bot{token}/sendMessage"
 
